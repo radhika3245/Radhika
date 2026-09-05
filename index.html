@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radhika — Telugu Trader | Free Telegram Channel</title>
+<style>
+  :root{
+    --bg-0:#050a08;
+    --bg-1:#081712;
+    --bg-2:#0c221a;
+    --line:#163127;
+    --green:#22c55e;
+    --green-bright:#39ff9c;
+    --green-dim:#0f5132;
+    --text-0:#eef7f1;
+    --text-1:#a8c3b4;
+    --text-2:#6f8c7d;
+    --red:#f2545b;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg-0);
+    color:var(--text-0);
+    font-family:'Georgia', 'Times New Roman', serif;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  .mono{
+    font-family:'Courier New', monospace;
+  }
+
+  /* Background texture */
+  .bg-grid{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      linear-gradient(rgba(34,197,94,0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(34,197,94,0.055) 1px, transparent 1px);
+    background-size:42px 42px;
+    mask-image: radial-gradient(ellipse 70% 55% at 50% 15%, black 40%, transparent 90%);
+  }
+  .bg-glow{
+    position:fixed; top:-10%; left:50%; transform:translateX(-50%);
+    width:900px; height:600px; z-index:0; pointer-events:none;
+    background:radial-gradient(ellipse at center, rgba(34,197,94,0.16), transparent 65%);
+  }
+
+  /* Navbar — continuous scrolling marquee */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(5,10,8,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:15px 0;
+  }
+  .marquee-track{
+    display:inline-flex;
+    align-items:center;
+    animation:marquee 26s linear infinite;
+    will-change:transform;
+  }
+  nav:hover .marquee-track{
+    animation-play-state:paused;
+  }
+  @keyframes marquee{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-50%);}
+  }
+  .navlinks{
+    display:inline-flex; gap:44px; font-family:'Trebuchet MS', sans-serif;
+    font-size:12.5px; font-weight:700; letter-spacing:0.03em;
+    color:var(--green-bright); list-style:none;
+    padding:0 22px;
+  }
+  .navlinks li{
+    cursor:pointer; transition:opacity .2s ease;
+    display:flex; align-items:center; gap:5px;
+    white-space:nowrap;
+  }
+  .navlinks li:hover{opacity:0.7;}
+  .navlinks li .caret{font-size:9px; opacity:0.7;}
+  .navlinks li.featured{
+    color:var(--text-0);
+    background:rgba(34,197,94,0.08);
+    border:1px solid var(--green-dim);
+    padding:5px 12px;
+    border-radius:6px;
+  }
+  .navlinks li.featured .sq{
+    display:inline-block; width:11px; height:11px;
+    background:var(--text-1); border-radius:2px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .marquee-track{animation:none;}
+  }
+
+  /* Hero */
+  .hero{
+    position:relative; z-index:1;
+    max-width:760px; margin:0 auto;
+    padding:88px 24px 70px;
+    text-align:center;
+  }
+  .pill{
+    display:inline-flex; align-items:center; gap:8px;
+    border:1px solid var(--green-dim);
+    background:rgba(34,197,94,0.07);
+    color:var(--green-bright);
+    font-family:'Trebuchet MS', sans-serif;
+    font-size:11.5px;
+    letter-spacing:0.14em;
+    padding:6px 16px;
+    border-radius:100px;
+    margin-bottom:34px;
+  }
+  .pill .dot{
+    width:6px; height:6px; border-radius:50%;
+    background:var(--green-bright);
+    box-shadow:0 0 8px var(--green-bright);
+  }
+  h1{
+    font-size:88px;
+    font-weight:400;
+    letter-spacing:-0.01em;
+    color:#fbfdfc;
+    line-height:0.98;
+    margin-bottom:14px;
+  }
+  .sub-brand{
+    font-family:'Trebuchet MS', sans-serif;
+    font-size:14px;
+    letter-spacing:0.32em;
+    color:var(--green-bright);
+    font-weight:700;
+    margin-bottom:30px;
+  }
+  .rule{
+    width:64px; height:1px; background:var(--line);
+    margin:0 auto 30px;
+  }
+  .spark{
+    width:320px; max-width:80%; height:auto; margin:0 auto 30px; display:block;
+  }
+  .desc{
+    font-size:17px;
+    color:var(--text-1);
+    max-width:480px;
+    margin:0 auto 34px;
+    line-height:1.65;
+  }
+
+  /* Ticker badges */
+  .tickers{
+    display:flex; justify-content:center; gap:12px; flex-wrap:wrap;
+    margin-bottom:22px;
+  }
+  .ticker{
+    font-family:'Courier New', monospace;
+    font-size:12.5px;
+    border:1px solid var(--line);
+    background:var(--bg-1);
+    padding:8px 14px;
+    border-radius:8px;
+    display:flex; align-items:center; gap:7px;
+    color:var(--text-1);
+  }
+  .ticker b{color:var(--text-0); font-weight:700;}
+  .ticker .up{color:var(--green-bright);}
+  .ticker .down{color:var(--red);}
+
+  /* Feature tags */
+  .tags{
+    display:flex; justify-content:center; gap:10px; flex-wrap:wrap;
+    margin-bottom:38px;
+  }
+  .tag{
+    font-family:'Trebuchet MS', sans-serif;
+    font-size:12.5px;
+    border:1px solid var(--line);
+    padding:7px 13px 7px 11px;
+    border-radius:100px;
+    color:var(--text-1);
+    display:flex; align-items:center; gap:6px;
+  }
+  .tag .ic{font-size:12px;}
+
+  /* CTA */
+  .cta-btn{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--green-bright);
+    color:#04120a;
+    font-family:'Trebuchet MS', sans-serif;
+    font-weight:800;
+    font-size:16px;
+    padding:16px 38px;
+    border-radius:10px;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+    box-shadow:0 0 0 0 rgba(57,255,156,0.5);
+    transition:transform .15s ease, box-shadow .25s ease;
+  }
+  .cta-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 24px -6px rgba(57,255,156,0.45);
+  }
+  .cta-note{
+    margin-top:16px;
+    font-family:'Trebuchet MS', sans-serif;
+    font-size:12px;
+    color:var(--text-2);
+    display:flex; align-items:center; justify-content:center; gap:8px;
+  }
+  .cta-note .live{
+    width:6px; height:6px; border-radius:50%; background:var(--green-bright);
+    box-shadow:0 0 6px var(--green-bright);
+    animation:pulse 1.8s infinite ease-in-out;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1;} 50%{opacity:0.35;}
+  }
+
+  /* Below-fold: what you get */
+  .section{
+    position:relative; z-index:1;
+    max-width:960px; margin:0 auto;
+    padding:60px 24px;
+  }
+  .section-head{
+    text-align:center; margin-bottom:44px;
+  }
+  .section-head .eyebrow{
+    font-family:'Trebuchet MS', sans-serif;
+    font-size:12px; color:var(--green-bright); letter-spacing:0.1em;
+    margin-bottom:10px;
+  }
+  .section-head h2{
+    font-size:36px; font-weight:400; color:#fbfdfc;
+  }
+  .grid3{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:12px;
+    overflow:hidden;
+  }
+  .cell{
+    background:var(--bg-1);
+    padding:30px 26px;
+  }
+  .cell .num{
+    font-family:'Courier New', monospace;
+    color:var(--text-2); font-size:12px; margin-bottom:14px;
+  }
+  .cell h3{
+    font-size:19px; font-weight:400; color:var(--text-0); margin-bottom:10px;
+  }
+  .cell p{
+    font-family:'Trebuchet MS', sans-serif;
+    font-size:13.5px; color:var(--text-2); line-height:1.6;
+  }
+  @media (max-width:760px){
+    .grid3{grid-template-columns:1fr;}
+    h1{font-size:56px;}
+  }
+
+  footer{
+    position:relative; z-index:1;
+    text-align:center; padding:50px 24px 60px;
+    border-top:1px solid var(--line);
+    margin-top:40px;
+    font-family:'Trebuchet MS', sans-serif;
+    color:var(--text-2);
+    font-size:12.5px;
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+<div class="bg-grid"></div>
+
+<nav>
+  <div class="marquee-track">
+    <ul class="navlinks">
+      <li>NIFTY CALLS <span class="caret">▾</span></li>
+      <li>OPTIONS TIPS <span class="caret">▾</span></li>
+      <li>BANKNIFTY <span class="caret">▾</span></li>
+      <li>FREE CHANNEL <span class="caret">▾</span></li>
+      <li>TELUGU COMMUNITY <span class="caret">▾</span></li>
+      <li>DAILY ALERTS <span class="caret">▾</span></li>
+      <li class="featured"><span class="sq"></span> TELUGU TRADER RADHIKA™ <span class="caret">▾</span></li>
+      <li>NIFTY CALLS <span class="caret">▾</span></li>
+      <li>OPTIONS TIPS <span class="caret">▾</span></li>
+    </ul>
+    <ul class="navlinks">
+      <li>NIFTY CALLS <span class="caret">▾</span></li>
+      <li>OPTIONS TIPS <span class="caret">▾</span></li>
+      <li>BANKNIFTY <span class="caret">▾</span></li>
+      <li>FREE CHANNEL <span class="caret">▾</span></li>
+      <li>TELUGU COMMUNITY <span class="caret">▾</span></li>
+      <li>DAILY ALERTS <span class="caret">▾</span></li>
+      <li class="featured"><span class="sq"></span> TELUGU TRADER RADHIKA™ <span class="caret">▾</span></li>
+      <li>NIFTY CALLS <span class="caret">▾</span></li>
+      <li>OPTIONS TIPS <span class="caret">▾</span></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="pill"><span class="dot"></span> TELEGRAM CHANNEL · FREE</div>
+
+  <h1>Radhika</h1>
+  <div class="sub-brand">TELUGU TRADER</div>
+  <div class="rule"></div>
+
+  <svg class="spark" viewBox="0 0 320 90" fill="none">
+    <path d="M4 66 C 60 62, 100 40, 150 44 S 240 20, 316 10" stroke="#22c55e" stroke-width="1.6" stroke-linecap="round" opacity="0.85"/>
+  </svg>
+
+  <p class="desc">
+    Expert stock &amp; options calls for the Telugu community — Nifty, BankNifty and intraday tips, delivered daily on Telegram.
+  </p>
+
+  <div class="tickers">
+    <div class="ticker">NIFTY <b>23,842</b> <span class="up">▲</span></div>
+    <div class="ticker">BANKNIFTY <b>51,204</b> <span class="up">▲</span></div>
+    <div class="ticker">SENSEX <b>78,502</b> <span class="down">▼</span></div>
+  </div>
+
+  <div class="tags">
+    <div class="tag"><span class="ic">☑</span> Intraday</div>
+    <div class="tag"><span class="ic">◈</span> Options</div>
+    <div class="tag"><span class="ic">↗</span> Swing</div>
+    <div class="tag"><span class="ic">⚡</span> Alerts</div>
+    <div class="tag"><span class="ic">అ</span> Telugu</div>
+  </div>
+
+  <a href="#" id="join" class="cta-btn">◁ Join Free on Telegram</a>
+
+  <div class="cta-note"><span class="live"></span> Market live · Members active — Free · Trade responsibly</div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <div class="eyebrow">WHAT YOU GET</div>
+    <h2>Daily calls, straight to your phone</h2>
+  </div>
+  <div class="grid3">
+    <div class="cell">
+      <div class="num">01</div>
+      <h3>Nifty &amp; BankNifty calls</h3>
+      <p>Entry, target and stop-loss levels shared before market hours, in Telugu.</p>
+    </div>
+    <div class="cell">
+      <div class="num">02</div>
+      <h3>Options &amp; intraday tips</h3>
+      <p>Quick setups for intraday and options traders, with clear risk levels.</p>
+    </div>
+    <div class="cell">
+      <div class="num">03</div>
+      <h3>Swing &amp; alerts</h3>
+      <p>Multi-day swing picks and instant alerts when levels are hit.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Radhika · Telugu Trader — For educational purposes only. Not investment advice. Trade responsibly.
+</footer>
+
+</body>
+</html>
